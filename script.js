@@ -8,37 +8,33 @@ function convertToRoman(num) {
         5: ['V', 5], 
         6: ['I', 1]
     };
+	    const romanSymbols = [
+        ['M', 1000],
+        ['CM', 900],
+        ['D', 500],
+        ['CD', 400],
+        ['C', 100],
+        ['XC', 90],
+        ['L', 50],
+        ['XL', 40],
+        ['X', 10],
+        ['IX', 9],
+        ['V', 5],
+        ['IV', 4],
+        ['I', 1]
+    ];
+    
+    let result = '';
 
-    // Special cases for subtraction
-    const subtractionRules = {
-        4: 'IV',
-        9: 'IX',
-        40: 'XL',
-        90: 'XC',
-        400: 'CD',
-        900: 'CM'
-    };
-
-    let romanNumeral = '';
-
-    // Handle special subtraction cases
-    for (let value in subtractionRules) {
-        value = parseInt(value);
+    for (let i = 0; i < romanSymbols.length; i++) {
+        const [symbol, value] = romanSymbols[i];
         while (num >= value) {
-            romanNumeral += subtractionRules[value];
+            result += symbol;
             num -= value;
         }
     }
 
-    // Handle the standard conversion
-    for (let i = 0; i < Object.keys(obj).length; i++) {
-        while (num >= obj[i][1]) {
-            romanNumeral += obj[i][0];
-            num -= obj[i][1];
-        }
-    }
-
-    return romanNumeral;
+    return result;
 }
 
 // Test the function with an example
